@@ -1,0 +1,19 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main, dev]
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Garde-fou
+        run: |
+          if grep -rq "FIXME_BLOCK_CI" . --exclude-dir=.git; then
+            echo "Marqueur FIXME_BLOCK_CI présent — échec volontaire"
+            exit 1
+          fi
+          echo "OK"
