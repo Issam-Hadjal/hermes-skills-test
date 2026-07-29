@@ -17,3 +17,4 @@ jobs:
             exit 1
           fi
           echo "OK"
+# sonde admin — modification reelle
